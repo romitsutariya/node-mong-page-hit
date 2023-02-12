@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myingress
+  labels:
+    name: myingress
+spec:
+  rules:
+  -  http:
+      paths:
+      - pathType: Prefix
+        path: "/nginx"
+        backend:
+          service:
+            name: nginx
+            port: 
+              number: 80
+      - pathType: Prefix
+        path: "/app"
+        backend:
+          service:
+            name: node-mongo-page-hit
+            port: 
+              number: 8000
+
+              
