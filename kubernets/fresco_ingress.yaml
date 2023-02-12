@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: fresco-ingress
+  labels:
+    name: fresco-ingress
+  namespace: frescons 
+  annotations:
+     nginx.ingress.kubernetes.io/rewrite-target: / 
+spec:
+  rules:
+    http:
+      paths:
+      - path: /nginx
+        backend:
+          serviceName: nginx
+          servicePort: 80
+      - path: /app
+        backend:
+          serviceName: node-mongo-page-hit
+          servicePort: 8000
